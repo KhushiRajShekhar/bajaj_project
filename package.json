@@ -6,7 +6,9 @@
   "scripts": {
     "start": "node index.js"
   },
-  "dependencies": {},
+  "dependencies": {
+    "express": "^4.18.2"
+  },
   "devDependencies": {},
   "author": "Your Name",
   "license": "MIT"
