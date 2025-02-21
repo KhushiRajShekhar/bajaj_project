@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Filter</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .container { max-width: 500px; margin: auto; }
+        textarea { width: 100%; height: 60px; }
+        select, button { width: 100%; padding: 10px; margin-top: 10px; }
+        .output { margin-top: 20px; padding: 10px; border: 1px solid #ccc; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Data Filter</h2>
+        <label>API Input:</label>
+        <textarea id="jsonInput">{"data":["M","1","334","4","B"]}</textarea>
+        <button onclick="submitData()">Submit</button>
+        
+        <label>Multi Filter:</label>
+        <select id="filter" multiple>
+            <option value="numbers">Numbers</option>
+            <option value="alphabet">Highest Alphabet</option>
+        </select>
+        
+        <div class="output" id="result">Filtered Response will appear here...</div>
+    </div>
+    
+    <script>
+        function submitData() {
+            const jsonInput = document.getElementById("jsonInput").value;
+            const selectedFilters = Array.from(document.getElementById("filter").selectedOptions).map(opt => opt.value);
+            
+            axios.post("https://bajaj-project-64fe.onrender.com", { data: JSON.parse(jsonInput).data, filters: selectedFilters })
+                .then(response => {
+                    document.getElementById("result").innerHTML = JSON.stringify(response.data, null, 2);
+                })
+                .catch(error => {
+                    document.getElementById("result").innerHTML = "Error: " + error;
+                });
+        }
+    </script>
+</body>
+</html>
