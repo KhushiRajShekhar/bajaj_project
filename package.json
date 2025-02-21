@@ -1,0 +1,13 @@
+{
+  "name": "bajaj_project",
+  "version": "1.0.0",
+  "description": "My Node.js project",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {},
+  "devDependencies": {},
+  "author": "Your Name",
+  "license": "MIT"
+}
